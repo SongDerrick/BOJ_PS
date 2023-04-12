@@ -1,30 +1,42 @@
 from collections import deque
 
 def solution(queue1, queue2):
-    target = (sum(queue1) + sum(queue2)) // 2
+    total = (sum(queue1) + sum(queue2))
+    target = total // 2
     
     q1 = deque(queue1)
     q2 = deque(queue2)
     
     count1 = 0
     count2 = 0
-    if max(q1) > target or max(q2) > target:
+    if total % 2 == 1 or max(q1) > target or max(q2) > target:
         answer = -1
     else:
-        while count1 != target or count2 != target:
-            print(count1, count2)
-            s1 = sum(q1)
-            s2 = sum(q2)
-            if s1 == s2:
+        t = len(q1)*2
+        c1 = sum(q1)
+        c2 = sum(q2)
+        removed = 0
+        while count1 + count2 <=2*t:
+            #print(count1, count2)
+            
+            s1 = c1 - removed
+            s2 = c2 + removed
+            #print(s1, s2)
+            
+            if s1 == s2 or not q1 or not q2:
                 break
             elif s1 > s2:
-                q2.append(q1.popleft())
+                temp = q1.popleft()
+                q2.append(temp)
+                removed += temp
                 count1 += 1
             else:
-                q1.append(q2.popleft())
+                temp = q2.popleft()
+                q1.append(temp)
+                removed -= temp
                 count2 += 1 
     
-        if count1 == target or count2 == target:
+        if s1 != s2:
             answer = -1
         else:
             answer = count1 + count2
