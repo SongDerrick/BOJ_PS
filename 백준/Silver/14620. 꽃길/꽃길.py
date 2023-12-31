@@ -29,30 +29,12 @@ def check_flowers_alive(ax, ay, bx, by, cx, cy):
   if (ax - bx)**2 + (ay - by)**2 <= 4:
     return False
 
-  # if (ax - bx) == 0 or (ay - by) == 2:
-  #   return False
-
-  # if (ax - bx) == 2 or (ay - by) == 0:
-  #   return False
-
   if (ax - cx)**2 + (ay - cy)**2 <= 4:
     return False
 
-  # if (ax - cx) == 0 or (ay - cy) == 2:
-  #   return False
-
-  # if (ax - cx) == 2 or (ay - cy) == 0:
-  #   return False
-
   if (bx - cx)**2 + (by - cy)**2 <= 4:
     return False
-
-  # if (bx - cx) == 0 or (by - cy) == 2:
-  #   return False
-
-  # if (bx - cx) == 2 or (by - cy) == 0:
-  #   return False
-
+    
   return True
 
 
@@ -72,8 +54,6 @@ for ax in range(N):
                     ax, ay, bx, by, cx, cy):
 
                   currMoney = calculate_land_money(ax, ay, bx, by, cx, cy)
-                  # print(ax, ay, bx, by, cx, cy)
-                  # print("돈", currMoney)
                   if minMoney > currMoney:
                     minMoney = currMoney
 
